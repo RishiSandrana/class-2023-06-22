@@ -1,4 +1,31 @@
 ---
-title: "class-2023-06-22"
+title: "Baby Names"
 ---
+
+```{r}
+#| echo: false
+#| message: false
+library(babynames)
+library(tidyverse)
+library(ggthemes)
+```
+
+```{r}
+#| echo: false
+babynames |>
+  mutate(name = substr(name, 1, 1)) |>
+  filter(str_detect(name, "^[AEIOU]")) |>
+  summarize(totalprop = sum(prop), .by = c(year, name)) |>
+  ggplot(aes(x = year, y = totalprop, fill = name)) +
+  geom_area() +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(
+    title = "Percentage of U.S. Baby Names Beginning with Vowels",
+    subtitle = "Names beginning with A- are the most frequent.",
+    y = "",
+    x = "Year",
+    fill = "Name"
+  ) +
+  theme_clean()
+```
 

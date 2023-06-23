@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Baby Names",
+    "section": "",
+    "text": "babynames |>\n  mutate(name = substr(name, 1, 1)) |>\n  filter(str_detect(name, \"^[AEIOU]\")) |>\n  summarize(totalprop = sum(prop), .by = c(year, name)) |>\n  ggplot(aes(x = year, y = totalprop, fill = name)) +\n  geom_area() +\n  scale_y_continuous(labels = scales::percent_format())"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  }
+]
